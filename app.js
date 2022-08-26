@@ -1,22 +1,21 @@
-// NEXT https://dev.to/internettradie/mastering-hard-parts-of-javascript-prototype-class-iii-2k6g
+// NEXT https://dev.to/internettradie/mastering-hard-parts-of-javascript-prototype-class-iii-2k6g 
 
-const personStore = {
-  greet() {
+// EXAMPLE 6
+
+function personConstructor(){
+  this.greet = function () {
     console.log("hello");
-  },
-};
-
-function personFromPersonStore (name, age) {
-  const person = Object.create(personStore);
-  person.name = name;
-  person.age = age;
-  return person
+  }
 }
 
-personStore.introduce = function (){
-  console.log(`my name is ${this.name}`);
+function personFromConstructor(name ,age){
+  const person = new personConstructor();
+    person.name = name;
+    person.age = age;
+    return person;
 }
-const dejan = personFromPersonStore("dejan", 31);
-dejan.greet();
-console.log(dejan.introduce());
+
+const simo = new personFromConstructor("Simon", 38);
+console.log(simo);
+
 
