@@ -1,26 +1,22 @@
 // NEXT https://dev.to/internettradie/mastering-hard-parts-of-javascript-prototype-class-v-l91
+// exercise 14
 
-
-class PersonClass{
-  constructor(name){
-    this.name = name;
-  }
-  greet(){
-    console.log("hallo");
+const userFunctionStore = {
+  sayType: function(){
+    console.log("I am " + this.type);
   }
 }
 
-class DeveloperClass{
-  constructor(name, age){
-    this.name = name;
-    this.age = age;
-  }
-introduce(){
-  console.log(`My name is ${this.name}`);
-}
-}
+const adminFunctionStore = Object.create(userFunctionStore);
 
-const dejan = new DeveloperClass("Dejan", 31);
+function adminFactoryn(name, score){
+  const admin = Object.create(adminFunctionStore);
+  admin.name = name;
+  admin.score = score;
+  return admin;
+}
+adminFunctionStore.type = "Admin";
 
-console.log(dejan.age);
+const a = adminFactoryn("dejan", 100);
+a.sayType();
 
