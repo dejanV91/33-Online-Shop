@@ -1,8 +1,8 @@
 {
-  "name": "VEZBA",
+  "name": "vezba",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "learning sass",
+  "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,14 +10,10 @@
     "type": "git",
     "url": "git+https://github.com/dejanV91/VEZBE.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Dejan Vukoicic",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/dejanV91/VEZBE/issues"
   },
-  "homepage": "https://github.com/dejanV91/VEZBE#readme",
-  "dependencies": {
-    "gulp-sass": "^5.1.0"
-  }
+  "homepage": "https://github.com/dejanV91/VEZBE#readme"
 }
