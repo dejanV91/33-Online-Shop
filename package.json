@@ -11,9 +11,17 @@
     "url": "git+https://github.com/dejanV91/VEZBE.git"
   },
   "author": "Dejan Vukoicic",
-  "license": "MIT",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/dejanV91/VEZBE/issues"
   },
-  "homepage": "https://github.com/dejanV91/VEZBE#readme"
+  "homepage": "https://github.com/dejanV91/VEZBE#readme",
+  "dependencies": {
+    "gulp-cli": "^2.0.1"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-sass": "^5.1.0",
+    "sass": "^1.54.9"
+  }
 }
