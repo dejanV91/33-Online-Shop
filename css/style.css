@@ -6,9 +6,12 @@ header nav {
 }
 header nav ul {
   list-style: none;
+  display: flex;
+  align-items: center;
 }
 header nav ul li {
   display: inline-block;
+  margin-left: 30px;
 }
 header nav ul li a {
   color: #fff;
@@ -17,8 +20,15 @@ header nav ul li a {
   text-decoration: none;
   font-family: Arial, Helvetica, sans-serif;
 }
-header nav ul li a:hover {
-  text-decoration: underline;
+header nav ul li a:hover:after {
+  display: block;
+}
+header nav ul li a:after {
+  content: "";
+  display: none;
+  background-color: #fff;
+  height: 2px;
+  width: 100%;
 }
 
 * {

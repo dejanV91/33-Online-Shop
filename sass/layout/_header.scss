@@ -1,14 +1,17 @@
 header{
     background-color: #000;
-
+    
     nav{
         padding: 15px;
 
         ul{
             list-style: none;
+            display: flex;
+            align-items: center;
 
             li{
                 display: inline-block;
+                margin-left: 30px;
 
                 a{
                     color: #fff;
@@ -18,7 +21,17 @@ header{
                     font-family: $font;
 
                     &:hover{
-                        text-decoration: underline;
+                        &:after{
+                            display: block;
+                        }
+                    }
+
+                    &:after{
+                        content: '';
+                        display: none;
+                        background-color: #fff;
+                        height: 2px;
+                        width: 100%;
                     }
                 }
             }
