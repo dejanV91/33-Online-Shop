@@ -3,5 +3,13 @@ header{
 
     nav{
         padding: 15px;
+
+        ul{
+            list-style: none;
+
+            li{
+                display: inline-block;
+            }
+        }
     }
 }
