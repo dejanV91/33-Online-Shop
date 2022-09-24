@@ -15,6 +15,7 @@ header nav ul li a {
   font-size: 16px;
   text-transform: uppercase;
   text-decoration: none;
+  font-family: Arial, Helvetica, sans-serif;
 }
 header nav ul li a:hover {
   text-decoration: underline;
@@ -23,4 +24,5 @@ header nav ul li a:hover {
 * {
   margin: 0;
   padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
 }
