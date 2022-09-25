@@ -68,3 +68,11 @@ header nav ul li a:after {
 body {
   background-color: black;
 }
+
+section.hero h1 {
+  font-size: 68px;
+  font-weight: 300;
+}
+section.hero h1 span {
+  font-weight: 600;
+}
