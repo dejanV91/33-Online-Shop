@@ -1,8 +1,31 @@
 header {
   background-color: #000;
 }
+header .pre-header {
+  height: 30px;
+  background: linear-gradient(to right, black, gray);
+  display: flex;
+  justify-content: flex-end;
+}
+header .pre-header ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+header .pre-header ul li {
+  display: inline-block;
+  margin-right: 20px;
+}
+header .pre-header ul li:first-child a {
+  color: #970000;
+}
+header .pre-header ul li a {
+  text-decoration: none;
+  color: rgb(73, 73, 73);
+}
 header nav {
-  padding: 15px;
+  padding: 0 15px;
 }
 header nav ul {
   list-style: none;
@@ -13,7 +36,11 @@ header nav ul li {
   display: inline-block;
   margin-left: 30px;
 }
+header nav ul li:first-child a:hover::after {
+  display: none;
+}
 header nav ul li a {
+  position: relative;
   color: #fff;
   font-size: 16px;
   text-transform: uppercase;
@@ -24,6 +51,7 @@ header nav ul li a:hover:after {
   display: block;
 }
 header nav ul li a:after {
+  position: absolute;
   content: "";
   display: none;
   background-color: #fff;
@@ -35,4 +63,8 @@ header nav ul li a:after {
   margin: 0;
   padding: 0;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background-color: black;
 }

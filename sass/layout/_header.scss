@@ -1,8 +1,38 @@
 header{
     background-color: #000;
+
+    .pre-header{
+        height: 30px;
+        background: linear-gradient(to right, black, gray);
+        display: flex;            
+        justify-content: flex-end;
+
+        ul{
+            list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            li{
+                display: inline-block;
+                margin-right: 20px;
+                
+                &:first-child{
+                    a{
+                        color: $orange;
+                    }
+                }
+
+                a{
+                    text-decoration: none;
+                    color: rgb(73, 73, 73);
+                }
+            }
+        }
+    }
     
     nav{
-        padding: 15px;
+        padding: 0 15px;
 
         ul{
             list-style: none;
@@ -11,9 +41,18 @@ header{
 
             li{
                 display: inline-block;
-                margin-left: 30px;
+                margin-left: 30px; 
+
+                &:first-child{
+                    a:hover{
+                        &::after{
+                            display: none;
+                        }
+                    }
+                }
 
                 a{
+                    position: relative;
                     color: #fff;
                     font-size: 16px;
                     text-transform: uppercase;
@@ -27,6 +66,7 @@ header{
                     }
 
                     &:after{
+                        position: absolute;
                         content: '';
                         display: none;
                         background-color: #fff;
