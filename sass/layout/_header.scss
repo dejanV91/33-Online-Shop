@@ -1,9 +1,6 @@
 header{
     background-color: #000;
-    position: fixed;
     width: 100%;
-    z-index: 20;
-    top: 0;
 
     .pre-header{
         height: 30px;
@@ -36,9 +33,13 @@ header{
     }
     
     nav{
+        position: fixed;
+        z-index: 3;
+        width: 100%;
         padding: 0 15px;
 
         ul{
+            float: left;
             list-style: none;
             display: flex;
             align-items: center;
@@ -83,7 +84,7 @@ header{
 
         .nav-right-side{
             float: right;
-            margin-right: 15px;
+            margin: 15px 40px 0 0;
 
             a{
                 color: white;
