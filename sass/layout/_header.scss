@@ -80,5 +80,18 @@ header{
                 }
             }
         }
+
+        .nav-right-side{
+            float: right;
+            margin-right: 15px;
+
+            a{
+                color: white;
+
+                &:hover{
+                    cursor: pointer;
+                }
+            }
+        }
     }
 }
