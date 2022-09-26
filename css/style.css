@@ -28,6 +28,7 @@ header .pre-header ul li a {
 header nav {
   position: fixed;
   z-index: 3;
+  background-color: black;
   width: 100%;
   padding: 0 15px;
 }
@@ -127,4 +128,8 @@ div.image img {
 }
 .search-wrraper {
   display: none;
+  background-color: white;
+}
+.search-wrraper #close-search {
+  cursor: pointer;
 }
