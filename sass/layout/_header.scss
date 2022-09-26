@@ -33,11 +33,16 @@ header{
     }
     
     nav{
-        position: fixed;
         z-index: 3;
         background-color: black;
         width: 100%;
         padding: 0 15px;
+        
+        &.fixed-nav{
+            position: fixed;
+            top: 0;
+            transition: all 0.3s linear;
+        }
 
         ul{
             float: left;

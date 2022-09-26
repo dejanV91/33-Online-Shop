@@ -26,11 +26,15 @@ header .pre-header ul li a {
   color: rgb(73, 73, 73);
 }
 header nav {
-  position: fixed;
   z-index: 3;
   background-color: black;
   width: 100%;
   padding: 0 15px;
+}
+header nav.fixed-nav {
+  position: fixed;
+  top: 0;
+  transition: all 0.3s linear;
 }
 header nav ul {
   float: left;
@@ -116,6 +120,20 @@ div.image img {
   width: 200px;
   height: 200px;
   margin: 0;
+}
+
+.text {
+  width: 30%;
+  margin: 30px auto 60px;
+  height: 500px;
+  background-color: white;
+}
+.text p {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  font-size: 60px;
 }
 
 @-webkit-keyframes hue {
