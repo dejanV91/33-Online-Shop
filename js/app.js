@@ -1,10 +1,17 @@
 let xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function(){
     if(this.readyState == 4 && this.status == 200){
-        console.log(this.responseText);
 
         let obj = JSON.parse(this.responseText)
-        console.log(obj);
+        let productsEl = document.getElementById("products");
+        let html = "";
+
+        for (let i = 0; i < obj.length ; i++) {
+            html += "<p>"+ obj[i].product_name  +"</p>"
+            
+        }
+
+        productsEl.innerHTML = html;
 
     }
 }
