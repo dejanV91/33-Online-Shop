@@ -7,7 +7,11 @@ xhttp.onreadystatechange = function(){
         let html = "";
 
         for (let i = 0; i < obj.length ; i++) {
-            html += "<p>"+ obj[i].product_name  +"</p>"
+            html += "<div class='col-md-4'>" +
+            "<div class='card'>"+
+            "<img src="+obj[i].product_image+">"+
+           " </div>"+
+            "</div>"
             
         }
 
