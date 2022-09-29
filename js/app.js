@@ -9,7 +9,8 @@ xhttp.onreadystatechange = function(){
             const {product_description : desc, 
                     product_image : img, 
                     product_name : name, 
-                    product_price : price} = item;
+                    product_price : price,
+                    id} = item;
            
             return `<div class="card" style="width: 18rem; margin:10px; padding:10px;">
                         <img class="card-img-top" src="${img}" alt="${name}">
@@ -17,7 +18,7 @@ xhttp.onreadystatechange = function(){
                             <h5 class="card-title">${name}</h5>
                             <p class="card-text">$${price}</p>
                             <button class="btn btn-primary">Add To Cart</button>
-                            <button class="btn btn-info">See more</button>
+                            <button onclick="seeMore(this)" data-product-id="${id}" class="btn btn-info">See More</button>
                         </div>
                     </div>`
         })
@@ -29,3 +30,7 @@ xhttp.onreadystatechange = function(){
 
 xhttp.open("GET","https://6334a608ea0de5318a06d722.mockapi.io/products", true);
 xhttp.send();
+
+function seeMore(el){
+    let id = el.dataset.productId;
+}
