@@ -87,9 +87,10 @@ function addToCart(el){
                                                             </div>`           
         total += parseFloat(obj.product_price);
         document.getElementById("totalPrice").innerHTML = total;
+        setCookie("cart-items", document.getElementById("myCart").innerHTML, 5);
         }
     }
-
+    
 
     xhttp.open("GET", "https://6334a608ea0de5318a06d722.mockapi.io/products/" + id, true);
     xhttp.send()
