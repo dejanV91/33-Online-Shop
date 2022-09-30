@@ -59,14 +59,16 @@ function seeMore(el){
     xhttp.send();
 }
 
+let total = 0;
 let itemsAlreadyAdded = false;
+
 function addToCart(el){
     let id = el.dataset.productId;
 
     if (!itemsAlreadyAdded) {
         document.getElementById("myCart"). innerHTML = `<div class="row">
                                                             <div class="col-md-9"><h3>Your cart items:</h3></div>    
-                                                            <div class="col-md-3"><p><b>Total: </b>$<span id="totalPrice">322</span></p></div>    
+                                                            <div class="col-md-3"><p><b>Total: </b>$<span id="totalPrice"></span></p></div>    
                                                         </div>`
     itemsAlreadyAdded = true
     }
@@ -77,15 +79,26 @@ function addToCart(el){
 
             let obj = JSON.parse(this.responseText)
 
-            document.getElementById("myCart").innerHTML += `<div class="row">
+            document.getElementById("myCart").innerHTML += `<div class="row cart-items" id="item${id}">
                                                                 <div class="col-md-4">${obj.product_name}</div>
                                                                 <div class="col-md-3"><b>Material: </b>${obj.product_materijal}</div>
                                                                 <div class="col-md-2"><b>Price: </b>$${obj.product_price}</div>
-                                                                <div class="col-md-3"><button class="btn btn-danger">Remove from cart</button></div>
-                                                            </div><br>`
+                                                                <div class="col-md-3"><button onclick = "removeFromCart(this)" data-product-price = "${obj.product_price}" data-product-id="${id}" class="btn btn-danger">Remove from cart</button></div>
+                                                            </div>`           
+        total += parseFloat(obj.product_price);
+        document.getElementById("totalPrice").innerHTML = total;
         }
     }
 
+
     xhttp.open("GET", "https://6334a608ea0de5318a06d722.mockapi.io/products/" + id, true);
     xhttp.send()
+}
+
+function removeFromCart(el){
+    let id = el.dataset.productId;
+    let price = el.dataset.productPrice;
+    total = total - parseInt(price);
+    document.getElementById(`item${id}`).remove();
+    document.getElementById("totalPrice").innerHTML = total;
 }
