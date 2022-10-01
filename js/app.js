@@ -1,4 +1,18 @@
-document.getElementById("myCart").innerHTML = getCookie("cart_items");
+jQuery(document).ready(function($){
+
+    $("#myCart").html(getCookie("cart_items"));
+
+});
+
+
+
+
+
+
+
+
+
+// document.getElementById("myCart").innerHTML = getCookie("cart_items");
 
 let xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function(){
@@ -60,35 +74,35 @@ function seeMore(el){
     xhttp.open("GET","https://6334a608ea0de5318a06d722.mockapi.io/products/" + id, true);
     xhttp.send();
 }
-
-let total = 0;
+   
 let itemsAlreadyAdded = false;
 
 function addToCart(el){
     let id = el.dataset.productId;
 
-    if (!itemsAlreadyAdded) {
+    if (!itemsAlreadyAdded && document.getElementById("myCart").innerHTML === " ") {
         document.getElementById("myCart"). innerHTML = "<div class='row'>" + 
                                                             "<div class='col-md-9'><h3>Your cart items:</h3></div>" +    
                                                             "<div class='col-md-3'><p><b>Total: </b>$<span id='totalPrice'>" + 0 + "</span></p></div>" +   
                                                         "</div>"
-    itemsAlreadyAdded = true
+        itemsAlreadyAdded = true
     }
     
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function(){
         if (this.readyState ==4 && this.status == 200) {
 
-            let obj = JSON.parse(this.responseText)
-
+            let obj = JSON.parse(this.responseText);
             document.getElementById("myCart").innerHTML += "<div class='row cart-items' id='item" + obj.id + "'>" +
                                                                 "<div class='col-md-4'>" + obj.product_name + "</div>" + 
                                                                 "<div class='col-md-3'><b>Material: </b>" + obj.product_materijal + "</div>" +
                                                                 "<div class='col-md-2'><b>Price: </b>$" + obj.product_price + "</div>" +
                                                                 "<div class='col-md-3'><button onclick = 'removeFromCart(this)' data-product-price = " + obj.product_price + " data-product-id=" + obj.id + " class='btn btn-danger'>Remove from cart</button></div>" +
-                                                            "</div>"          
-        total = total + parseFloat(obj.product_price);
-        document.getElementById("totalPrice").innerHTML = total;
+                                                            "</div>"   ;       
+        let totalPrice = parseInt( document.getElementById("totalPrice").innerText);
+        totalPrice = totalPrice + parseFloat(obj.product_price);                                                    
+        // total = total + parseFloat(obj.product_price);
+        document.getElementById("totalPrice").innerHTML = totalPrice;
         setCookie("cart_items", document.getElementById("myCart").innerHTML, 5);
         }
     }
@@ -100,9 +114,13 @@ function addToCart(el){
 function removeFromCart(el){
     let id = el.dataset.productId;
     let price = el.dataset.productPrice;
+
     document.getElementById("item" + id).remove();
-    total = total - parseInt(price);
-    document.getElementById("totalPrice").innerHTML = total;
+    
+    let totalPrice = parseInt( document.getElementById("totalPrice").innerText);
+    totalPrice = totalPrice - price;
+    document.getElementById("totalPrice").innerHTML = totalPrice;
+
     setCookie("cart_items", document.getElementById("myCart").innerHTML, 5);
 }
 
