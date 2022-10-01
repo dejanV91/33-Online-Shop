@@ -1,3 +1,5 @@
+document.getElementById("myCart").innerHTML = getCookie("cart_items");
+
 let xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function(){
     if(this.readyState == 4 && this.status == 200){
@@ -66,10 +68,10 @@ function addToCart(el){
     let id = el.dataset.productId;
 
     if (!itemsAlreadyAdded) {
-        document.getElementById("myCart"). innerHTML = `<div class="row">
-                                                            <div class="col-md-9"><h3>Your cart items:</h3></div>    
-                                                            <div class="col-md-3"><p><b>Total: </b>$<span id="totalPrice"></span></p></div>    
-                                                        </div>`
+        document.getElementById("myCart"). innerHTML = "<div class='row'>" + 
+                                                            "<div class='col-md-9'><h3>Your cart items:</h3></div>" +    
+                                                            "<div class='col-md-3'><p><b>Total: </b>$<span id='totalPrice'></span></p></div>" +   
+                                                        "</div>"
     itemsAlreadyAdded = true
     }
     
@@ -79,18 +81,17 @@ function addToCart(el){
 
             let obj = JSON.parse(this.responseText)
 
-            document.getElementById("myCart").innerHTML += `<div class="row cart-items" id="item${id}">
-                                                                <div class="col-md-4">${obj.product_name}</div>
-                                                                <div class="col-md-3"><b>Material: </b>${obj.product_materijal}</div>
-                                                                <div class="col-md-2"><b>Price: </b>$${obj.product_price}</div>
-                                                                <div class="col-md-3"><button onclick = "removeFromCart(this)" data-product-price = "${obj.product_price}" data-product-id="${id}" class="btn btn-danger">Remove from cart</button></div>
-                                                            </div>`           
+            document.getElementById("myCart").innerHTML += "<div class='row cart-items' id='item" + obj.id + "'>" +
+                                                                "<div class='col-md-4'>" + obj.product_name + "</div>" + 
+                                                                "<div class='col-md-3'><b>Material: </b>" + obj.product_materijal + "</div>" +
+                                                                "<div class='col-md-2'><b>Price: </b>$" + obj.product_price + "</div>" +
+                                                                "<div class='col-md-3'><button onclick = 'removeFromCart(this)' data-product-price = " + obj.product_price + " data-product-id=" + obj.id + " class='btn btn-danger'>Remove from cart</button></div>" +
+                                                            "</div>"          
         total += parseFloat(obj.product_price);
         document.getElementById("totalPrice").innerHTML = total;
-        setCookie("cart-items", document.getElementById("myCart").innerHTML, 5);
+        setCookie("cart_items", document.getElementById("myCart").innerHTML, 5);
         }
     }
-    
 
     xhttp.open("GET", "https://6334a608ea0de5318a06d722.mockapi.io/products/" + id, true);
     xhttp.send()
@@ -100,7 +101,7 @@ function removeFromCart(el){
     let id = el.dataset.productId;
     let price = el.dataset.productPrice;
     total = total - parseInt(price);
-    document.getElementById(`item${id}`).remove();
+    document.getElementById("item" + id).remove();
     document.getElementById("totalPrice").innerHTML = total;
 }
 
@@ -111,9 +112,11 @@ function setCookie(cname, cvalue, exdays) {
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
   }
   
-  function getCookie(cname) {
+function getCookie(cname) {
     let name = cname + "=";
     let ca = document.cookie.split(';');
+    console.log(document.cookie);
+    console.log(ca);
     for(let i = 0; i < ca.length; i++) {
       let c = ca[i];
       while (c.charAt(0) == ' ') {
@@ -124,4 +127,4 @@ function setCookie(cname, cvalue, exdays) {
       }
     }
     return "";
-  }
+}
