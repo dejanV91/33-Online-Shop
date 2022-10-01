@@ -1,18 +1,4 @@
-jQuery(document).ready(function($){
-
-    $("#myCart").html(getCookie("cart_items"));
-
-});
-
-
-
-
-
-
-
-
-
-// document.getElementById("myCart").innerHTML = getCookie("cart_items");
+document.getElementById("myCart").innerHTML = getCookie("cart_items");
 
 let xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function(){
@@ -80,7 +66,7 @@ let itemsAlreadyAdded = false;
 function addToCart(el){
     let id = el.dataset.productId;
 
-    if (!itemsAlreadyAdded && document.getElementById("myCart").innerHTML === " ") {
+    if (!itemsAlreadyAdded && document.getElementById("myCart").innerHTML === "") {
         document.getElementById("myCart"). innerHTML = "<div class='row'>" + 
                                                             "<div class='col-md-9'><h3>Your cart items:</h3></div>" +    
                                                             "<div class='col-md-3'><p><b>Total: </b>$<span id='totalPrice'>" + 0 + "</span></p></div>" +   
@@ -90,7 +76,7 @@ function addToCart(el){
     
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function(){
-        if (this.readyState ==4 && this.status == 200) {
+        if (this.readyState == 4 && this.status == 200) {
 
             let obj = JSON.parse(this.responseText);
             document.getElementById("myCart").innerHTML += "<div class='row cart-items' id='item" + obj.id + "'>" +
@@ -98,10 +84,9 @@ function addToCart(el){
                                                                 "<div class='col-md-3'><b>Material: </b>" + obj.product_materijal + "</div>" +
                                                                 "<div class='col-md-2'><b>Price: </b>$" + obj.product_price + "</div>" +
                                                                 "<div class='col-md-3'><button onclick = 'removeFromCart(this)' data-product-price = " + obj.product_price + " data-product-id=" + obj.id + " class='btn btn-danger'>Remove from cart</button></div>" +
-                                                            "</div>"   ;       
-        let totalPrice = parseInt( document.getElementById("totalPrice").innerText);
+                                                            "</div>"      
+        let totalPrice = parseInt(document.getElementById("totalPrice").innerText);
         totalPrice = totalPrice + parseFloat(obj.product_price);                                                    
-        // total = total + parseFloat(obj.product_price);
         document.getElementById("totalPrice").innerHTML = totalPrice;
         setCookie("cart_items", document.getElementById("myCart").innerHTML, 5);
         }
