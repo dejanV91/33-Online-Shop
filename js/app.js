@@ -70,7 +70,7 @@ function addToCart(el){
     if (!itemsAlreadyAdded) {
         document.getElementById("myCart"). innerHTML = "<div class='row'>" + 
                                                             "<div class='col-md-9'><h3>Your cart items:</h3></div>" +    
-                                                            "<div class='col-md-3'><p><b>Total: </b>$<span id='totalPrice'></span></p></div>" +   
+                                                            "<div class='col-md-3'><p><b>Total: </b>$<span id='totalPrice'>" + 0 + "</span></p></div>" +   
                                                         "</div>"
     itemsAlreadyAdded = true
     }
@@ -87,7 +87,7 @@ function addToCart(el){
                                                                 "<div class='col-md-2'><b>Price: </b>$" + obj.product_price + "</div>" +
                                                                 "<div class='col-md-3'><button onclick = 'removeFromCart(this)' data-product-price = " + obj.product_price + " data-product-id=" + obj.id + " class='btn btn-danger'>Remove from cart</button></div>" +
                                                             "</div>"          
-        total += parseFloat(obj.product_price);
+        total = total + parseFloat(obj.product_price);
         document.getElementById("totalPrice").innerHTML = total;
         setCookie("cart_items", document.getElementById("myCart").innerHTML, 5);
         }
@@ -100,9 +100,10 @@ function addToCart(el){
 function removeFromCart(el){
     let id = el.dataset.productId;
     let price = el.dataset.productPrice;
-    total = total - parseInt(price);
     document.getElementById("item" + id).remove();
+    total = total - parseInt(price);
     document.getElementById("totalPrice").innerHTML = total;
+    setCookie("cart_items", document.getElementById("myCart").innerHTML, 5);
 }
 
 function setCookie(cname, cvalue, exdays) {
@@ -115,8 +116,6 @@ function setCookie(cname, cvalue, exdays) {
 function getCookie(cname) {
     let name = cname + "=";
     let ca = document.cookie.split(';');
-    console.log(document.cookie);
-    console.log(ca);
     for(let i = 0; i < ca.length; i++) {
       let c = ca[i];
       while (c.charAt(0) == ' ') {
